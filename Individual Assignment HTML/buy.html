@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>iluffy Stationery Shop</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="index.php"><img src="luffy.jpg" style="width: 80px; height: 35px;"></a>
+    </div>
+    <div class="navbar">
+        <nav>
+            <ul>
+                <li><a href="index.html" class="btn">Home</a></li>
+                <li><a href="products.html" class="btn">Products</a></li>
+                <li><a href="about.html" class="btn">About</a></li>
+                <li><a href="loc.html" class="btn">Location</a></li>
+            </ul>
+        </nav>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Buy an Item</h2>
+  <form id="buyForm" action="buy.php" method="post">
+    <div class="form-group">
+      <label for="item">Select Item:</label>
+      <select class="form-control" id="item" name="item">
+        <option value="Ballpoint Pen">Ballpoint Pen</option>
+        <option value="Gel Pen">Gel Pen</option>
+        <option value="Fountain Pen">Fountain Pen</option>
+        <option value="HBpencil">HBpencil</option>
+        <option value="Mechanicalpencil">Mechanicalpencil</option>
+        <option value="Permanent Marker">Permanent Marker</option>
+        <option value="Notebook">Notebook</option>
+        <option value="Journal">Journal</option>
+        <option value="Sticky Notes">Sticky Notes</option>
+        <option value="Printer Paper">Printer Paper</option>
+        <option value="Index Cards">Index Cards</option>
+        <option value="Envelopes">Envelopes</option>
+        <option value="Stapler">Stapler</option>
+        <option value="Paper Clip">Paper Clip</option>
+        <option value="Scotch Tape">Scotch Tape</option>
+        <option value="Push Pin">Push Pin</option>
+        <option value="3 Ring Binder">3 Ring Binder</option>
+        <option value="Highlighters">Highlighters</option>
+        <option value="Colored Pencils">Coloured Pencils</option>
+        <option value="Crayons">Crayons</option>
+        <option value="Watercolors">Watercolors</option>
+        <option value="Paintbrushes">Paintbrushes</option>
+        <option value="Glue">Glue</option>
+        <option value="Scissor">Scissor</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantity:</label>
+      <input type="number" class="form-control" id="quantity" name="quantity">
+    </div>
+    <div class="form-group">
+      <label for="name">Name on Card:</label>
+      <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="form-group">
+      <label for="card">Card Number:</label>
+      <input type="text" class="form-control" id="card" name="card">
+    </div>
+    <div class="form-group">
+      <label for="cvv">CVV:</label>
+      <input type="password" class="form-control" id="cvv" name="cvv">
+    </div>
+    <div class="form-group">
+      <label for="expiration">Expiration Date:</label>
+      <input type="text" class="form-control" id="expiration" name="expiration">
+    </div>
+    <div class="form-group">
+      <label for="total">Total:</label>
+      <input type="text" class="form-control" id="total" name="total" readonly>
+    </div>
+    <a href="success.html" class="btn">Buy Now</a>
+  </form>
+</div>
+
+<script>
+$(document).ready(function(){
+  $('#item, #quantity').change(function(){
+    var itemPrice = getItemPrice($('#item').val());
+    var quantity = $('#quantity').val();
+    var total = itemPrice * quantity;
+    $('#total').val('$' + total.toFixed(2));
+  });
+  
+  function getItemPrice(item) {
+    // Define item prices here
+    var itemPrices = {
+      'Ballpoint Pen': 1.00,
+      'Gel Pen': 1.50,
+      'Fountain Pen': 15.00,
+      'HBpencil ' : 0.50,
+      'Mechanicalpencil' : 2.00,
+      'Permanent Marker' : 1.20,
+      'Notebook' : 3.00,
+      'Journal' : 5.00,
+      'Sticky Notes' : 1.50,
+      'Printer Paper' : 4.00,
+      'Index Cards' : 2.00,
+      'Envelopes' : 3.00,
+      'Stapler' : 5.00,
+      'Paper Clip' : 1.00,
+      'Scotch Tape' : 1.50, 
+      'Push Pin' : 1.20,
+      '3 Ring Binder' : 4.00,
+      'Highlighters' : 2.50,
+      'Colored Pencil' : 5.00,
+      'Crayons' : 3.00,
+      'Watercolors' : 7.00,
+      'Paintbrushes' : 4.00,
+      'Glue' : 1.00,
+      'Scissor' : 2.50,
+
+    };
+    return itemPrices[item] || 0;
+  }
+});
+</script>
+
+</body>
+</html>
